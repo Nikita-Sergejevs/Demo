@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        LockCursor();
+        EnableCursor(false);
     }
 
     private void Update()   
@@ -39,9 +39,9 @@ public class CameraController : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseInput.x);
     }
 
-    private void LockCursor()
+    public void EnableCursor(bool enable)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = !enable ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = enable;
     }
 }
