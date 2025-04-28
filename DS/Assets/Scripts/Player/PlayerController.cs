@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private IInteractable currentInteractableObject;
 
-    public bool canMove;
+    public bool isMovementAllowed;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovementInput()
     {
-        if(!canMove)
+        if(!isMovementAllowed)
             return;
 
         Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<IInteractable>(out IInteractable interacteble))
-            currentInteractableObject = interacteble;
+        if (other.TryGetComponent<IInteractable>(out IInteractable interactable))
+            currentInteractableObject = interactable;
     }
 
     private void OnTriggerExit(Collider other)
