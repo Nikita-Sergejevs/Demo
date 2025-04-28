@@ -6,13 +6,15 @@ public class Windows : MonoBehaviour, IInteractable
     [Header("Windows Parameters")]
     [SerializeField] private Transform windowCameraPosition;
     [SerializeField] private Transform originalCameraPosition;
+    [Space]
+    [SerializeField] private Transform windowWeaponPosition;
+    [SerializeField] private Transform originalWeaponPosition;
 
     [Header("References")]
+    [SerializeField] private Transform playerWeapon;
     [SerializeField] private Transform playerCamera;
     [SerializeField] private CameraController cameraController;
     [SerializeField] private PlayerController playerController;
-
-    private Vector3 windowCameraRotation;
 
     private bool isInteracting;
 
@@ -29,7 +31,8 @@ public class Windows : MonoBehaviour, IInteractable
 
     private void StartInteraction()
     {
-        SetCameraPositionAndRotation(windowCameraPosition.position, windowCameraPosition.localRotation);
+        SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.localRotation);
+        SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.localRotation);
         EnableControll(false);
 
         OnShootFromWindow?.Invoke();
@@ -37,16 +40,20 @@ public class Windows : MonoBehaviour, IInteractable
 
     private void EndInteraction()
     {
-        SetCameraPositionAndRotation(originalCameraPosition.position, originalCameraPosition.localRotation);
+        SetPositionAndRotation(playerCamera, originalCameraPosition.position, originalCameraPosition.localRotation);
+        SetPositionAndRotation(playerWeapon, originalWeaponPosition.position, originalWeaponPosition.localRotation);
         EnableControll(true);
 
         OnEndShootFromWindow?.Invoke();
     }
 
-    private void SetCameraPositionAndRotation(Vector3 targetPosition, Quaternion targetRotation)
+    private void SetPositionAndRotation(Transform transferingObject, Vector3 targetPosition, Quaternion targetRotation)
     {
-        playerCamera.transform.position = targetPosition;
-        playerCamera.transform.rotation = targetRotation;
+        if (transferingObject == null)
+            return;
+
+        transferingObject.position = targetPosition;
+        transferingObject.rotation = targetRotation;
     }
 
     private void EnableControll(bool enable)
