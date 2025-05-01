@@ -13,6 +13,7 @@ public class Windows : MonoBehaviour, IInteractable
     [Header("References")]
     [SerializeField] private Transform playerWeapon;
     [SerializeField] private Transform playerCamera;
+    [Space]
     [SerializeField] private CameraController cameraController;
     [SerializeField] private PlayerController playerController;
 
@@ -33,7 +34,7 @@ public class Windows : MonoBehaviour, IInteractable
     {
         SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.localRotation);
         SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.localRotation);
-        EnableControll(false);
+        EnableCursor(false);
 
         OnShootFromWindow?.Invoke();
     }
@@ -42,7 +43,7 @@ public class Windows : MonoBehaviour, IInteractable
     {
         SetPositionAndRotation(playerCamera, originalCameraPosition.position, originalCameraPosition.localRotation);
         SetPositionAndRotation(playerWeapon, originalWeaponPosition.position, originalWeaponPosition.localRotation);
-        EnableControll(true);
+        EnableCursor(true);
 
         OnEndShootFromWindow?.Invoke();
     }
@@ -56,7 +57,7 @@ public class Windows : MonoBehaviour, IInteractable
         transferingObject.rotation = targetRotation;
     }
 
-    private void EnableControll(bool enable)
+    private void EnableCursor(bool enable)
     {
         isInteracting = !enable;
 
