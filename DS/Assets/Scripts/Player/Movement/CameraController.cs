@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
     {
         Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * cameraSensitivity;  
 
-        xRotaion = Mathf.Clamp(xRotaion - mouseInput.y, -85, 85);
+        xRotaion = Mathf.Clamp(xRotaion - mouseInput.y, -75, 75);
 
         transform.localRotation = Quaternion.Euler(xRotaion, 0, 0);
         playerBody.Rotate(Vector3.up * mouseInput.x);

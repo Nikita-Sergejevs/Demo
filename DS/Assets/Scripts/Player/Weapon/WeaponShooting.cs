@@ -11,10 +11,9 @@ namespace weaponSystem
         [Space]
         [SerializeField] private float shootDistance;
 
-
         [Header("References")]
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private WeaponSwayBob weaponSwayBob;
+        [SerializeField] private WeaponMoveSwayBob weaponSwayBob;
         [Space]
         [SerializeField] private LayerMask layerMask;
 

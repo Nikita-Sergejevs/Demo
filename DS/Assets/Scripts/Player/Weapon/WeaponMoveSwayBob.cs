@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace weaponSystem
 {
-    public class WeaponSwayBob : MonoBehaviour
+    public class WeaponMoveSwayBob : MonoBehaviour
     {
         [Header("Sway Parameters")]
         [SerializeField] private float swaySpeed;
@@ -15,7 +15,6 @@ namespace weaponSystem
 
         [Header("References")]
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private Transform weapon;
 
         private float bobTimer;
 
