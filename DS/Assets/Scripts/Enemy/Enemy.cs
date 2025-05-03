@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Enemy Parameters")]
     [SerializeField] private float healt;
+    [SerializeField] private float speed; 
 
     public void TakeDamage(float damage)
     {

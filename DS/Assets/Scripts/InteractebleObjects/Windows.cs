@@ -32,7 +32,7 @@ public class Windows : MonoBehaviour, IInteractable
 
     private void StartInteraction()
     {
-        SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.localRotation);
+        SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.rotation);
         SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.rotation);
         EnableCursor(false);
 
@@ -41,7 +41,7 @@ public class Windows : MonoBehaviour, IInteractable
 
     private void EndInteraction()
     {
-        SetPositionAndRotation(playerCamera, originalCameraPosition.position, originalCameraPosition.localRotation);
+        SetPositionAndRotation(playerCamera, originalCameraPosition.position, originalCameraPosition.rotation);
         SetPositionAndRotation(playerWeapon, originalWeaponPosition.position, originalWeaponPosition.rotation);
         EnableCursor(true);
 
