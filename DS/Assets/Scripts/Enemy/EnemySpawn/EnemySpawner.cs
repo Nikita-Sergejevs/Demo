@@ -1,22 +1,24 @@
+using System;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Parameters")]
     [SerializeField] private float timeBetweenSpawn;
-    [SerializeField] private float xOffset;
 
     [Header("Prefabs")]
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private GameObject[] enemyPrefab;
 
     [Header("References")]
     [SerializeField] private WaveManager waveManager;
+    [SerializeField] private EnemyFactory enemyFactory;
 
     private float timer;
     private float[] spawnWeight;
 
     private Transform spawnPoint;
+
+    public static event Action OnSpawn;
 
     private void Start()
     {
@@ -66,23 +68,13 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
-    {
-        int enemyIndex = Random.Range(0, enemyPrefab.Length);
-
-        float offsetX = Random.Range(-xOffset, xOffset);
-        Vector3 spawnPosition = spawnPoint.position + spawnPoint.right * offsetX;
-
-        Instantiate(enemyPrefab[enemyIndex], spawnPosition, Quaternion.identity);
-    }
-
     private int ChooseWeightedIndex()
     {
         float totalWeight = 0f;
         foreach (float w in spawnWeight)
             totalWeight += 1f / w;
 
-        float randomValue = Random.value * totalWeight;
+        float randomValue = UnityEngine.Random.value * totalWeight;
         float cumulative = 0f;
 
         for (int i = 0; i < spawnWeight.Length; i++)
@@ -93,5 +85,10 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return spawnWeight.Length - 1;
+    }
+
+    private void SpawnEnemy()
+    {
+        enemyFactory.SpawnEnemy(spawnPoint);
     }
 }

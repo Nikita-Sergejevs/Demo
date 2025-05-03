@@ -78,9 +78,9 @@ namespace weaponSystem
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 1);
 
-                IDamageable damageable  = hit.collider.GetComponent<IDamageable>();
-                if (damageable  != null)
-                    damageable .TakeDamage(damage);
+                IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+                if (damageable != null)
+                    damageable.TakeDamage(damage);
             }
         }
     }

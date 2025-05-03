@@ -6,14 +6,14 @@ public class WaveManager : MonoBehaviour
     [Header("Wave Parameters")]
     [SerializeField] private float timeOfWave;
 
-    [Header("Reference")]
+    [Header("References")]
     [SerializeField] private EnemySpawner enemySpawner;
 
     [SerializeField] private KeyCode startKey = KeyCode.Space;
 
     private float currentWave = 0;
 
-    private bool isWaveReady;
+    private bool isWaveReady = true;   
     private bool isWaveActive;
 
     public static event Action OnWaveStart;
