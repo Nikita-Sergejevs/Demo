@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Walking
   m_EditorClassIdentifier: 
   baseHp: 10
-  baseSpeed: 5
+  baseSpeed: 2
   enemyType: 0

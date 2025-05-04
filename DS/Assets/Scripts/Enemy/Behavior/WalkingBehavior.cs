@@ -1,48 +1,58 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class WalkingBehavior : MonoBehaviour
+public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
 {
-    private Transform[] targetPosition;
+    [SerializeField] private float radiusOffset;
 
-    [HideInInspector] public float movementSpeed;
+    private Transform[] targetPosition;
+    private Transform currentTarget;
+
+    private NavMeshAgent agent;
+
+    public void InitializeBehavior(float speed, Transform[] targets)
+    {
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+            return;
+
+        targetPosition = targets;
+        agent.speed = speed;
+
+        Transform closest = FindClosetTarget();
+        if (closest != null)
+        {
+            Vector3 offset = Random.insideUnitSphere * radiusOffset;
+            offset.y = 0;
+
+            agent.SetDestination(closest.position + offset);
+        }
+    }
 
     private void Update()
     {
-        Movement();
+        if (agent.remainingDistance < 0.5f)
+        {
+            agent.isStopped = true;
+        }
     }
 
-    public void SetTarget(Transform[] target)
+    private Transform FindClosetTarget()
     {
-        targetPosition = target;
-    }
-
-    public void Movement()
-    {
-        if (targetPosition == null || targetPosition.Length == 0)
-            return;
-
-        Transform nearestTarget = GetNearestTarget();
-
-        Vector3 direction = (nearestTarget.position - transform.position).normalized;
-
-        transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, movementSpeed * Time.deltaTime);
-    }
-
-    private Transform GetNearestTarget()
-    {
-        Transform nearestTarget = targetPosition[0];
-        float shortestDistance = Vector3.Distance(transform.position, nearestTarget.position);  
+        Transform closets = null;
+        float minDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
 
         foreach (var target in targetPosition)
         {
-            float distance = Vector3.Distance(transform.position, target.position);
-            if (distance < shortestDistance)
+            float distance = Vector3.Distance(currentPosition, target.position);
+            if (distance < minDistance)
             {
-                shortestDistance = distance;
-                nearestTarget = target;
+                minDistance = distance;
+                closets = target;
             }
         }
 
-        return nearestTarget;
+        return closets;
     }
 }

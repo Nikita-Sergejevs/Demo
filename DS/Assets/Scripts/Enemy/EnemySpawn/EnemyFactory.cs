@@ -9,11 +9,6 @@ public class EnemyFactory : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefab;
 
-    public EnemyFactory(GameObject[] enemyPrefab, float xOffset)
-    {
-        this.enemyPrefab = enemyPrefab;
-        this.xOffset = xOffset; 
-    }
 
     public void SpawnEnemy(Transform spawnPoint)
     {

@@ -9,29 +9,17 @@ public class Enemy : MonoBehaviour, IDamageable
     private float speed;
     private EnemyData.Type type;
 
-    public void Initialize(Transform[] targetPoints)
+    public void Initialize(Transform[] baseTargets)
     {
         if (data == null)
             return;
 
         health = data.baseHp;
         speed = data.baseSpeed;
-        type = data.enemyType;
 
-        switch (type)
-        {
-            case EnemyData.Type.Walking:
-                WalkingBehavior walkingBehavior = GetComponent<WalkingBehavior>();
-                if (walkingBehavior != null)
-                {
-                    walkingBehavior.movementSpeed = speed;
-                    walkingBehavior.SetTarget(targetPoints);
-                    walkingBehavior.Movement();
-                }
-                else return;
-
-                break;
-        }
+        IEnemyBehavior behavior = GetComponent<IEnemyBehavior>();
+        if (behavior != null)
+            behavior.InitializeBehavior(speed, baseTargets);
     }
 
     public void TakeDamage(float damage)
