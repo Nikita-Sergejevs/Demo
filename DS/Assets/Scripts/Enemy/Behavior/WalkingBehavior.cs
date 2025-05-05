@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
 {
-    [SerializeField] private float radiusOffset;
+    [SerializeField] private float targetRadiusOffset;
 
     private Transform[] targetPosition;
     private Transform currentTarget;
@@ -19,10 +19,10 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
         targetPosition = targets;
         agent.speed = speed;
 
-        Transform closest = FindClosetTarget();
+        Transform closest = TargetUtils.FindClosetTarget(targetPosition, transform.position);
         if (closest != null)
         {
-            Vector3 offset = Random.insideUnitSphere * radiusOffset;
+            Vector3 offset = Random.insideUnitSphere * targetRadiusOffset;
             offset.y = 0;
 
             agent.SetDestination(closest.position + offset);
@@ -35,24 +35,5 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
         {
             agent.isStopped = true;
         }
-    }
-
-    private Transform FindClosetTarget()
-    {
-        Transform closets = null;
-        float minDistance = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
-
-        foreach (var target in targetPosition)
-        {
-            float distance = Vector3.Distance(currentPosition, target.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                closets = target;
-            }
-        }
-
-        return closets;
     }
 }
