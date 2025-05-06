@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c176518fd0ffd44848cceb744eaabe, type: 3}
+  m_Name: WaveEnemyPool
+  m_EditorClassIdentifier: 
+  entries:
+  - enemyData: {fileID: 11400000, guid: d3b5ee5795408c44b8ee923a2b58d234, type: 2}
+    prefab: {fileID: 4882402823901674024, guid: c2c48b1ccfa90304cb14cc8d947650b6, type: 3}
+  - enemyData: {fileID: 11400000, guid: 4e389e26778faee47b5d1306def4cee6, type: 2}
+    prefab: {fileID: 4282685738777549352, guid: 0ffb2b01a455ea241b1b57ff2d610e51, type: 3}

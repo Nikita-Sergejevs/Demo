@@ -6,6 +6,11 @@ public class EnemyData : ScriptableObject
 {
     public float baseHp;
     public float baseSpeed;
+    public float baseDamage;
+    public float baseLifeTime;
+
+    [Range(0, 100)] public float rarity;
+
     public Type enemyType;
 
     public enum Type

@@ -4853,7 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  maxAmmo: 16
+  maxAmmo: 1000
   currentAmmo: 0
   shootDistance: 1000
   playerCamera: {fileID: 963194227}
@@ -6855,6 +6855,7 @@ GameObject:
   - component: {fileID: 2034631503}
   - component: {fileID: 2034631504}
   - component: {fileID: 2034631505}
+  - component: {fileID: 2034631506}
   m_Layer: 0
   m_Name: Enemy Spawners
   m_TagString: Untagged
@@ -6922,6 +6923,19 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 4882402823901674024, guid: c2c48b1ccfa90304cb14cc8d947650b6, type: 3}
   - {fileID: 4282685738777549352, guid: 0ffb2b01a455ea241b1b57ff2d610e51, type: 3}
+--- !u!114 &2034631506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034631502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bcbf41dae39fe4b996cd3e7e89c2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPool: {fileID: 11400000, guid: e85cfd7ac78ab4440811852254f62408, type: 2}
 --- !u!4 &2036346766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b27dd11a993d4ab409ce9957da4055f1, type: 3}

@@ -9,9 +9,6 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
     [SerializeField] private float pointsSideOffset;
     [SerializeField] private int maxWayPoints;
 
-    private Transform[] targetPosition;
-    private Transform currentTarget;
-
     private Transform closetPoint;
 
     private List<Vector3> debugPathPoints = new List<Vector3>();
@@ -20,15 +17,15 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
 
     private NavMeshAgent agent;
 
-    public void InitializeBehavior(float speed, Transform[] targets)
+    public void InitializeBehavior(EnemyBehaviorConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null) 
             return;
 
-        agent.speed = speed;
+        agent.speed = config.speed;
 
-        closetPoint = TargetUtils.FindClosetTarget(targets, transform.position);
+        closetPoint = TargetUtils.FindClosetTarget(config.targets, transform.position);
 
         GetWayPoints();
         MoveToNextPoint();

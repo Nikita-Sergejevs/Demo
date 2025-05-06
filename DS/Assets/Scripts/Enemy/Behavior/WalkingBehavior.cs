@@ -5,21 +5,17 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
 {
     [SerializeField] private float targetRadiusOffset;
 
-    private Transform[] targetPosition;
-    private Transform currentTarget;
-
     private NavMeshAgent agent;
 
-    public void InitializeBehavior(float speed, Transform[] targets)
+    public void InitializeBehavior(EnemyBehaviorConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
             return;
 
-        targetPosition = targets;
-        agent.speed = speed;
+        agent.speed = config.speed;
 
-        Transform closest = TargetUtils.FindClosetTarget(targetPosition, transform.position);
+        Transform closest = TargetUtils.FindClosetTarget(config.targets, transform.position);
         if (closest != null)
         {
             Vector3 offset = Random.insideUnitSphere * targetRadiusOffset;

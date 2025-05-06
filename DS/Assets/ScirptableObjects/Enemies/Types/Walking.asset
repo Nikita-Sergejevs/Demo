@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHp: 10
   baseSpeed: 2
+  baseDamage: 0
+  baseLifeTime: 0
+  rarity: 10
   enemyType: 0

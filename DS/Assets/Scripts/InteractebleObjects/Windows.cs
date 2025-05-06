@@ -9,6 +9,8 @@ public class Windows : MonoBehaviour, IInteractable
     [Space]
     [SerializeField] private Transform windowWeaponPosition;
     [SerializeField] private Transform originalWeaponPosition;
+    [Space]
+    [SerializeField] private Transform windowEnemySpawnPoint;
 
     [Header("References")]
     [SerializeField] private Transform playerWeapon;
@@ -35,6 +37,8 @@ public class Windows : MonoBehaviour, IInteractable
         SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.rotation);
         SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.rotation);
         EnableCursor(false);
+
+        EnemyWindowUtil.RequestSpawn(windowEnemySpawnPoint);
 
         OnShootFromWindow?.Invoke();
     }
