@@ -24,6 +24,9 @@ public class Windows : MonoBehaviour, IInteractable
     public static event Action OnShootFromWindow;
     public static event Action OnEndShootFromWindow;
 
+    public static event Action<Transform> OnWindowEnemySpawn;
+    public static event Action OnWindowEnemyDespawn;
+
     public void Interact()
     {
         if (!isInteracting)
@@ -38,8 +41,7 @@ public class Windows : MonoBehaviour, IInteractable
         SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.rotation);
         EnableCursor(false);
 
-        EnemyWindowUtil.RequestSpawn(windowEnemySpawnPoint);
-
+        OnWindowEnemySpawn?.Invoke(windowEnemySpawnPoint);
         OnShootFromWindow?.Invoke();
     }
 
@@ -49,6 +51,7 @@ public class Windows : MonoBehaviour, IInteractable
         SetPositionAndRotation(playerWeapon, originalWeaponPosition.position, originalWeaponPosition.rotation);
         EnableCursor(true);
 
+        OnWindowEnemyDespawn?.Invoke();
         OnEndShootFromWindow?.Invoke();
     }
 

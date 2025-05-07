@@ -11,6 +11,9 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
 
     private Transform closetPoint;
 
+    private EnemyAttack attack;
+    private EnemyBehaviorConfig enemyConfig;
+
     private List<Vector3> debugPathPoints = new List<Vector3>();
 
     private Queue<Vector3> waypoint = new Queue<Vector3>();
@@ -20,7 +23,9 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
     public void InitializeBehavior(EnemyBehaviorConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
-        if (agent == null) 
+        attack = GetComponent<EnemyAttack>();
+
+        if (agent == null && attack == null) 
             return;
 
         agent.speed = config.speed;
@@ -35,6 +40,8 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
     {
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             MoveToNextPoint();
+        if (EnemyAttackUtil.ableToAttack(agent, attack, closetPoint))
+            EnemyAttackUtil.TryStartAttack(agent, attack, closetPoint, enemyConfig);
     }
 
     private void GetWayPoints()

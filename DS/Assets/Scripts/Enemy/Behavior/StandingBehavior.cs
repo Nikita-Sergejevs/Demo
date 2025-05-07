@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class StandingBehavior : MonoBehaviour, IEnemyBehavior, IDamageTaken
+public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 {
     private float lifeTime;
+    private float hp;
 
-    private bool hasKilledPlayer;
+    private bool isDead;
 
     private Enemy enemy;
 
@@ -14,51 +15,47 @@ public class StandingBehavior : MonoBehaviour, IEnemyBehavior, IDamageTaken
 
         lifeTime = config.lifeTime;
 
-        OnSpawn();
+        StartLifetimeTimer();
     }
 
     private void OnEnable()
     {
-        Windows.OnEndShootFromWindow += OnPlayerAction;
+        Windows.OnWindowEnemyDespawn += KillFromWindowExit;
     }
 
     private void OnDisable()
     {
-        Windows.OnEndShootFromWindow -= OnPlayerAction;
+        Windows.OnWindowEnemyDespawn -= KillFromWindowExit;
     }
 
-    private void OnPlayerAction()
+    private void StartLifetimeTimer()
     {
-        if (!hasKilledPlayer && enemy != null)
-        {
-            Debug.Log("killed");
-            hasKilledPlayer = true;
-
-            GoAway();
-        }
+        Invoke(nameof(DissapearEnemy), lifeTime);
     }
 
-    public void OnTakeDamage(float currentHp, float maxHp)
+    private void KillFromWindowExit()
     {
-        if (currentHp < maxHp && !hasKilledPlayer) 
-        {
-            Debug.Log("killed");
-            hasKilledPlayer = true;
+        if(isDead) return;
 
-            GoAway();
-        }
+        isDead = true;
+        CancelInvoke(nameof(DissapearEnemy));
+        Debug.Log("Killed");
+        enemy.Die();
     }
 
-    private void OnSpawn()
+    public void ReactToHit()
     {
-        hasKilledPlayer = false;
+        if (isDead) return;
 
-        Invoke(nameof(GoAway), lifeTime);
+        KillFromWindowExit();
     }
 
-    private void GoAway()
+    private void DissapearEnemy()
     {
-        EnemyWindowUtil.ResetSpawn();
+        if (isDead) return;
+
+        isDead = true;
+        Debug.Log("Survived");
         enemy.Die();
     }
 }

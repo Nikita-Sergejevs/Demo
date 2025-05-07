@@ -18,8 +18,6 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform spawnPoint;
 
-    public static event Action OnSpawn;
-
     private void Start()
     {
         spawnWeight = new float[spawnPoints.Length];
@@ -62,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
 
         spawnWeight[chooseIndex] += 1.5f;
 
-        for(int i = 0; i < spawnWeight.Length; i++)
+        for(int i = 0; i > spawnWeight.Length; i++)
         {
             spawnWeight[i] = Mathf.Max(1f, spawnWeight[i] - 0.5f);
         }
@@ -72,14 +70,14 @@ public class EnemySpawner : MonoBehaviour
     {
         float totalWeight = 0f;
         foreach (float w in spawnWeight)
-            totalWeight += 1f / w;
+            totalWeight += w;
 
         float randomValue = UnityEngine.Random.value * totalWeight;
         float cumulative = 0f;
 
         for (int i = 0; i < spawnWeight.Length; i++)
         {
-            cumulative += 1f / spawnWeight[i];
+            cumulative += spawnWeight[i];
             if (randomValue <= cumulative)
                 return i;
         }

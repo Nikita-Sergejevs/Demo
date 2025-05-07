@@ -6,50 +6,59 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private EnemyData data;
 
     private float health;
-    private float speed;
-    private EnemyData.Type type;
+
+    private SpawnIndicator spawnIndicator;
 
     public void Initialize(Transform[] baseTargets)
     {
         if (data == null)
             return;
 
-        health = data.baseHp;
-
         var config = CreateBehaviorConfig(baseTargets);
+
+        health = config.hp;
 
         IEnemyBehavior behavior = GetComponent<IEnemyBehavior>();
         if (behavior != null)
             behavior.InitializeBehavior(config);
-
-        IDamageTaken damageTaken = GetComponent<IDamageTaken>();
-        if (damageTaken != null)
-            damageTaken.OnTakeDamage(health, health);
     }
 
     private EnemyBehaviorConfig CreateBehaviorConfig(Transform[] baseTargets)
     {
         var config = ScriptableObject.CreateInstance<EnemyBehaviorConfig>();
+        config.hp = data.baseHp;
         config.speed = data.baseSpeed;
-        config.targets = baseTargets;
+        config.attackDamage = data.baseDamage;
+        config.attackCooldown = data.baseAttackCooldown;
         config.lifeTime = data.baseLifeTime;
+        config.targets = baseTargets;
         return config;
     }
 
     public void TakeDamage(float damage)
     {
+        var standing = GetComponent<StandingBehavior>();
+        if (standing != null)
+        {
+            standing.ReactToHit();
+            return;
+        }
+
         health -= damage;
         if (health <= 0)
             Die();
-
-        IDamageTaken damageTaken = GetComponent<IDamageTaken>();
-        if (damageTaken != null && health < data.baseHp)
-            damageTaken.OnTakeDamage(health, data.baseHp);
     }
 
+    public void SetSpawnIndicator(SpawnIndicator indicator)
+    {
+        spawnIndicator = indicator;
+    }
 
     public void Die()
     {
+        if(spawnIndicator != null)
+            spawnIndicator.UnregisterEnemy();
+
         Destroy(gameObject);
     }
 }

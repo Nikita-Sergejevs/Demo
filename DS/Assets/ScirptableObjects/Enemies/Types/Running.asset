@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ded01c35a9a9c04ab243adb9ac05f1a, type: 3}
   m_Name: Running
   m_EditorClassIdentifier: 
-  baseHp: 5
-  baseSpeed: 4
+  baseHp: 6
+  baseSpeed: 7
+  baseDamage: 4
+  baseAttackCooldown: 2
+  baseLifeTime: 0
   rarity: 40
   enemyType: 1

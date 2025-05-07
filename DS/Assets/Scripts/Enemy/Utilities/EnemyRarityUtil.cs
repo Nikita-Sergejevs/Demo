@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class EnemyRarityUnitl
+public static class EnemyRarityUtil
 {
     public static EnemyEntry GetEnemyByRarity(EnemyPool pool)
     {

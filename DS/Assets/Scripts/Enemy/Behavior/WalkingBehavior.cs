@@ -5,31 +5,42 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
 {
     [SerializeField] private float targetRadiusOffset;
 
+    private Transform currentTarget;
+
+    private EnemyAttack attack;
+    private EnemyBehaviorConfig enemyConfig;
+
     private NavMeshAgent agent;
+
+    private bool ableToAttack()
+    {
+        return !agent.pathPending && agent.remainingDistance < 0.5f && attack != null && currentTarget != null && !attack.isAttacking;
+    }
 
     public void InitializeBehavior(EnemyBehaviorConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
-        if (agent == null)
+        attack = GetComponent<EnemyAttack>();
+        this.enemyConfig = config;
+
+        if (agent == null && attack == null)
             return;
 
-        agent.speed = config.speed;
+        agent.speed = enemyConfig.speed;
 
-        Transform closest = TargetUtils.FindClosetTarget(config.targets, transform.position);
-        if (closest != null)
+        currentTarget = TargetUtils.FindClosetTarget(enemyConfig.targets, transform.position);
+        if (currentTarget != null)
         {
             Vector3 offset = Random.insideUnitSphere * targetRadiusOffset;
             offset.y = 0;
 
-            agent.SetDestination(closest.position + offset);
+            agent.SetDestination(currentTarget.position + offset);
         }
     }
 
     private void Update()
     {
-        if (agent.remainingDistance < 0.5f)
-        {
-            agent.isStopped = true;
-        }
+        if (EnemyAttackUtil.ableToAttack(agent, attack, currentTarget))
+            EnemyAttackUtil.TryStartAttack(agent, attack, currentTarget, enemyConfig);
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   baseHp: 100
   baseSpeed: 0
   baseDamage: 0
+  baseAttackCooldown: 0
   baseLifeTime: 2
-  rarity: 15
+  rarity: 5
   enemyType: 2

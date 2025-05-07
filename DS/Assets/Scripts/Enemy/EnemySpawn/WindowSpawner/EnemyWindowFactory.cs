@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class EnemyWindowSpawner : MonoBehaviour
+public class EnemyWindowFactory : MonoBehaviour
 {
     [SerializeField] private EnemyPool enemyPool;
 
     private void OnEnable()
     {
-        EnemyWindowUtil.onWindowEnemySpawnRequest += SpawnWindowEnemy;
+        Windows.OnWindowEnemySpawn += SpawnWindowEnemy;
     }
 
     private void OnDisable()
     {
-        EnemyWindowUtil.onWindowEnemySpawnRequest -= SpawnWindowEnemy;
+        Windows.OnWindowEnemySpawn -= SpawnWindowEnemy;
     }
 
     private void SpawnWindowEnemy(Transform window)
     {
-        EnemyEntry selectedEnemy = EnemyRarityUnitl.GetEnemyByRarity(enemyPool);
+        EnemyEntry selectedEnemy = EnemyRarityUtil.GetEnemyByRarity(enemyPool);
 
         if (selectedEnemy == null || selectedEnemy.prefab == null)
             return;
