@@ -10,13 +10,15 @@ public static class EnemyAttackUtil
 
     public static void TryStartAttack(NavMeshAgent agent, EnemyAttack attack, Transform target, EnemyBehaviorConfig config)
     {
-        if (agent == null || attack == null || target == null)
-            return;
-
         agent.isStopped = true;
 
         IDamageable damageable = target?.GetComponentInParent<IDamageable>();
         if (damageable != null)
             attack.InitializeAttack(config, damageable);
+        if (damageable == null)
+        {
+            Debug.LogError($"[EnemyAttack] No IDamageable found on or above {target?.name}");
+            return;
+        }
     }
 }

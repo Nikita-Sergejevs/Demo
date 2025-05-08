@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 {
@@ -39,8 +40,9 @@ public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 
         isDead = true;
         CancelInvoke(nameof(DissapearEnemy));
-        Debug.Log("Killed");
         enemy.Die();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReactToHit()
@@ -55,7 +57,6 @@ public class StandingBehavior : MonoBehaviour, IEnemyBehavior
         if (isDead) return;
 
         isDead = true;
-        Debug.Log("Survived");
         enemy.Die();
     }
 }

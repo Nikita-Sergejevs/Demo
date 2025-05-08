@@ -12,11 +12,6 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
 
     private NavMeshAgent agent;
 
-    private bool ableToAttack()
-    {
-        return !agent.pathPending && agent.remainingDistance < 0.5f && attack != null && currentTarget != null && !attack.isAttacking;
-    }
-
     public void InitializeBehavior(EnemyBehaviorConfig config)
     {
         agent = GetComponent<NavMeshAgent>();

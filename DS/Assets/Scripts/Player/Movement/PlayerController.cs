@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movementSpeed;
 
     [Header("KeyCodes")]
-    [SerializeField] KeyCode interactKey = KeyCode.E;
+    [SerializeField] KeyCode interactKey = KeyCode.Space;
 
     private CharacterController characterController;
 

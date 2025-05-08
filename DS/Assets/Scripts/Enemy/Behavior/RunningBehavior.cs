@@ -24,6 +24,7 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
     {
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<EnemyAttack>();
+        this.enemyConfig = config;
 
         if (agent == null && attack == null) 
             return;
@@ -34,14 +35,6 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
 
         GetWayPoints();
         MoveToNextPoint();
-    }
-
-    private void Update()
-    {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            MoveToNextPoint();
-        if (EnemyAttackUtil.ableToAttack(agent, attack, closetPoint))
-            EnemyAttackUtil.TryStartAttack(agent, attack, closetPoint, enemyConfig);
     }
 
     private void GetWayPoints()
@@ -60,6 +53,15 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
             waypoint.Enqueue(points);
     }
 
+    private void Update()
+    {
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            MoveToNextPoint();
+
+        if (EnemyAttackUtil.ableToAttack(agent, attack, closetPoint))
+            EnemyAttackUtil.TryStartAttack(agent, attack, closetPoint, enemyConfig);
+    }
+
     private void MoveToNextPoint()
     {
         if (waypoint.Count > 0)
@@ -67,9 +69,6 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
             Vector3 next = waypoint.Dequeue();
             agent.SetDestination(next);
         }
-        else
-            agent.isStopped = true;
-
     }
 
     private List<Vector3> GenerateZigZagPath(Vector3 start, Vector3 end, int pointCount, float offsetRange)
@@ -116,6 +115,6 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
         }
 
         if (debugPathPoints.Count > 0)
-            Gizmos.DrawSphere(debugPathPoints[^1], 0.25f); // последн€€ Ч цель
+            Gizmos.DrawSphere(debugPathPoints[^1], 0.25f);
     }
 }
