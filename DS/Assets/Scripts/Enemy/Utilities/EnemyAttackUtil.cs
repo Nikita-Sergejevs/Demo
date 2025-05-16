@@ -8,7 +8,7 @@ public static class EnemyAttackUtil
         return !agent.pathPending && agent.remainingDistance < 0.5f && attack != null && target != null && !attack.isAttacking;
     }
 
-    public static void TryStartAttack(NavMeshAgent agent, EnemyAttack attack, Transform target, EnemyBehaviorConfig config)
+    public static void TryStartAttack(NavMeshAgent agent, EnemyAttack attack, Transform target, EnemyConfig config)
     {
         agent.isStopped = true;
 

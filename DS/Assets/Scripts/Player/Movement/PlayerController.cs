@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Parameters")]
-    [SerializeField] private float movementSpeed;
-
     [Header("KeyCodes")]
     [SerializeField] KeyCode interactKey = KeyCode.Space;
+
+    private float movementSpeed;
+
+    private PlayerConfig playerConfig;
 
     private CharacterController characterController;
 
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
     {
         MovementInput();
         CheckForInteraction();
+    }
+
+    public void Initialize(PlayerConfig config)
+    {
+        playerConfig = config;
+        movementSpeed = playerConfig.speed;
     }
 
     private void MovementInput()

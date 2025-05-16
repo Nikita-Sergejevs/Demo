@@ -12,7 +12,7 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
     private Transform closetPoint;
 
     private EnemyAttack attack;
-    private EnemyBehaviorConfig enemyConfig;
+    private EnemyConfig enemyConfig;
 
     private List<Vector3> debugPathPoints = new List<Vector3>();
 
@@ -20,7 +20,7 @@ public class RunningBehavior : MonoBehaviour, IEnemyBehavior
 
     private NavMeshAgent agent;
 
-    public void InitializeBehavior(EnemyBehaviorConfig config)
+    public void InitializeBehavior(EnemyConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<EnemyAttack>();

@@ -10,7 +10,7 @@ public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 
     private Enemy enemy;
 
-    public void InitializeBehavior(EnemyBehaviorConfig config)
+    public void InitializeBehavior(EnemyConfig config)
     {
         enemy = GetComponent<Enemy>();
 
@@ -21,12 +21,12 @@ public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 
     private void OnEnable()
     {
-        Windows.OnWindowEnemyDespawn += KillFromWindowExit;
+        WindowInteraction.OnWindowEnemyDespawn += KillFromWindowExit;
     }
 
     private void OnDisable()
     {
-        Windows.OnWindowEnemyDespawn -= KillFromWindowExit;
+        WindowInteraction.OnWindowEnemyDespawn -= KillFromWindowExit;
     }
 
     private void StartLifetimeTimer()

@@ -9,7 +9,7 @@ public class EnemyAttack : MonoBehaviour
 
     private IDamageable target;
 
-    public void InitializeAttack(EnemyBehaviorConfig config, IDamageable damageableTarget)
+    public void InitializeAttack(EnemyConfig config, IDamageable damageableTarget)
     {
         CancelInvoke(nameof(Attack));
 

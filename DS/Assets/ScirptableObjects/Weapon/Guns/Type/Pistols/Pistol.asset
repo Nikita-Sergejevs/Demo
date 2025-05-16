@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea19c0dc1b3a24d48ae268c928d170c0, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  baseDamage: 0
-  baseMagSize: 0
-  baseMagCount: 0
-  baseTotalAmmo: 0
-  baseShootInterval: 0
-  weaponType: 0
+  baseDamage: 4
+  baseFireRate: 0.4
+  baseShootDistance: 1000
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  baseMagSize: 7
+  baseMagCount: 2
+  ammoType: {fileID: 11400000, guid: 7aeb85273b5a3c84f9df43542cc62f64, type: 2}
+  canShoot: 0

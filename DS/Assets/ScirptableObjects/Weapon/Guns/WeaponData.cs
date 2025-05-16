@@ -3,9 +3,6 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Weapon", menuName = "Weapon/New Weapon Data")]
 public class WeaponData : ScriptableObject
 {
-    [Header("Info")]
-    public string weaponName;
-
     [Header("Shooting Parameters")]
     public float baseDamage;
     public float baseFireRate;

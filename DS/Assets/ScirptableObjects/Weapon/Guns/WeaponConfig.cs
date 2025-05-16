@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class WeaponConfig : ScriptableObject
 {
-    public string weaponName;
-
     public float damage;
     public float fireRate;
     public float distance;
 
     public float magSize;
     public float magCount;
-    public float totalAmmo;
+    public float currentAmmo;
+    public float maxTotalAmmo;
 
     public AmmoData ammoType;
 

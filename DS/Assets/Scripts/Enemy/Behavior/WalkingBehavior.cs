@@ -8,11 +8,11 @@ public class WalkingBehavior : MonoBehaviour, IEnemyBehavior
     private Transform currentTarget;
 
     private EnemyAttack attack;
-    private EnemyBehaviorConfig enemyConfig;
+    private EnemyConfig enemyConfig;
 
     private NavMeshAgent agent;
 
-    public void InitializeBehavior(EnemyBehaviorConfig config)
+    public void InitializeBehavior(EnemyConfig config)
     {
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<EnemyAttack>();

@@ -6,12 +6,12 @@ public class EnemyWindowFactory : MonoBehaviour
 
     private void OnEnable()
     {
-        Windows.OnWindowEnemySpawn += SpawnWindowEnemy;
+        WindowInteraction.OnWindowEnemySpawn += SpawnWindowEnemy;
     }
 
     private void OnDisable()
     {
-        Windows.OnWindowEnemySpawn -= SpawnWindowEnemy;
+        WindowInteraction.OnWindowEnemySpawn -= SpawnWindowEnemy;
     }
 
     private void SpawnWindowEnemy(Transform window)

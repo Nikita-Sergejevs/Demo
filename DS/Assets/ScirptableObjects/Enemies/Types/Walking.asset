@@ -18,4 +18,6 @@ MonoBehaviour:
   baseAttackCooldown: 3
   baseLifeTime: 0
   rarity: 60
+  baseMinMoney: 5
+  baseMaxMoney: 10
   enemyType: 0
