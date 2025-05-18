@@ -13,10 +13,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         if (playerBody == null)
-        {
-            Debug.LogError($"[{nameof(CameraController)}] playerBody is not assigned!", this);
             enabled = false;
-        }
     }
 
     private void Start()

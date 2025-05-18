@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Window
   m_EditorClassIdentifier: 
   baseHp: 20
+  baseHpRegen: 5

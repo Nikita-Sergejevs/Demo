@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1440845327066845383}
   - component: {fileID: 8279994190801876533}
+  - component: {fileID: 3285508635451606243}
   - component: {fileID: 2511238170626785150}
   m_Layer: 6
   m_Name: Shotgun
@@ -47,6 +48,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 73b47be30967bf040a1dcccf6ecabe5f, type: 2}
+--- !u!114 &3285508635451606243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429451804976007386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41788e51395e844f901730e4097eb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2511238170626785150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +74,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 8279994190801876533}
   swayBob: {fileID: 3478534789124295742}
-  windowSway: {fileID: 2556555223514189972}
 --- !u!1 &7596167304511122408
 GameObject:
   m_ObjectHideFlags: 0

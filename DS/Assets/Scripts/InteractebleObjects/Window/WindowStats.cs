@@ -6,6 +6,7 @@ public class WindowStats : MonoBehaviour, IDamageable
     [SerializeField] private WindowData data;
 
     public float health;
+    private float hpRegen;
 
     private void Start()
     {
@@ -13,16 +14,23 @@ public class WindowStats : MonoBehaviour, IDamageable
             return;
 
         var config = CreateWindowConfig();
-        
+
         health = config.hp;
+        hpRegen = config.hpRegen;
     }
 
     private WindowConfig CreateWindowConfig()
     {
         var config = ScriptableObject.CreateInstance<WindowConfig>();
         config.hp = data.baseHp;
+        config.hpRegen = data.baseHpRegen;
 
         return config;
+    }
+
+    public bool TryToRepair()
+    {
+        return health < data.baseHp;
     }
 
     public void TakeDamage(float damage)
@@ -30,6 +38,11 @@ public class WindowStats : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
             WindowDestroy();
+    }
+
+    public void GetRepair()
+    {
+        health = Mathf.Min(health += hpRegen, data.baseHp);
     }
 
     private void WindowDestroy()

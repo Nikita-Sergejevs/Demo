@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class WindowInteraction : MonoBehaviour, IInteractable
+public class WindowInteraction : MonoBehaviour
 {
     [Header("Windows Parameters")]
     [SerializeField] private Transform windowCameraPosition;
@@ -21,6 +21,7 @@ public class WindowInteraction : MonoBehaviour, IInteractable
     [Space]
     [SerializeField] private ShopStateController shopInteraction;
 
+    public bool isBusy => isInteracting;
     private bool isInteracting;
 
     public static event Action OnShootFromWindow;
@@ -29,12 +30,9 @@ public class WindowInteraction : MonoBehaviour, IInteractable
     public static event Action<Transform> OnWindowEnemySpawn;
     public static event Action OnWindowEnemyDespawn;
 
-    public void Interact()
+    public void Toggle()
     {
-        if (shopInteraction.isInteracting)
-            return;
-
-        if (!isInteracting)
+        if(!isInteracting)
             StartInteraction();
         else
             EndInteraction();
@@ -42,8 +40,11 @@ public class WindowInteraction : MonoBehaviour, IInteractable
 
     private void StartInteraction()
     {
-        SetPositionAndRotation(playerCamera, windowCameraPosition.position, windowCameraPosition.rotation);
-        SetPositionAndRotation(playerWeapon, windowWeaponPosition.position, windowWeaponPosition.rotation);
+        if (shopInteraction.isInteracting)
+            return;
+
+        SetPositionAndRotation(playerCamera, windowCameraPosition);
+        SetPositionAndRotation(playerWeapon, windowWeaponPosition);
         SetInteractionMode(false);
 
         OnWindowEnemySpawn?.Invoke(windowEnemySpawnPoint);
@@ -52,21 +53,20 @@ public class WindowInteraction : MonoBehaviour, IInteractable
 
     private void EndInteraction()
     {
-        SetPositionAndRotation(playerCamera, originalCameraPosition.position, originalCameraPosition.rotation);
-        SetPositionAndRotation(playerWeapon, originalWeaponPosition.position, originalWeaponPosition.rotation);
+        SetPositionAndRotation(playerCamera, originalCameraPosition);
+        SetPositionAndRotation(playerWeapon, originalWeaponPosition);
         SetInteractionMode(true);
 
         OnWindowEnemyDespawn?.Invoke();
         OnEndShootFromWindow?.Invoke();
     }
 
-    private void SetPositionAndRotation(Transform transferingObject, Vector3 targetPosition, Quaternion targetRotation)
+    private void SetPositionAndRotation(Transform transferingObject, Transform target)
     {
         if (transferingObject == null)
             return;
 
-        transferingObject.position = targetPosition;
-        transferingObject.rotation = targetRotation;
+        transferingObject.SetPositionAndRotation(target.position, target.rotation);
     }
 
     private void SetInteractionMode(bool enable)

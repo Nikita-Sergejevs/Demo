@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   baseDamage: 4
-  baseFireRate: 0.4
+  baseFireRate: 0.55
   baseShootDistance: 1000
   layerMask:
     serializedVersion: 2

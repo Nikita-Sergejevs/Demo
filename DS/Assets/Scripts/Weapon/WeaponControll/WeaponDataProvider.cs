@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponDataProvider : MonoBehaviour
 {
     [SerializeField] private WeaponData data;
+    [SerializeField] private AmmoUI ammoUI;
 
     public WeaponStateController Controller { get; private set; }
 
@@ -18,9 +19,7 @@ public class WeaponDataProvider : MonoBehaviour
 
         var config = CreateWeaponConfig();
 
-        Debug.Log(config.maxTotalAmmo);
-
-        Controller = new WeaponStateController(config);
+        Controller = new WeaponStateController(config, ammoUI);
     }
 
     private WeaponConfig CreateWeaponConfig()

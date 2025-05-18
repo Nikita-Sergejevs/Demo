@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WeaponDataProvider dataProvider;
 
     private void Awake()
-    {
+    { 
         playerContext = new PlayerContext()
         {
             playerWallet = wallet,
-            weaponDataProvider = dataProvider
+            weaponDataProvider = dataProvider,
+            playerInventory = new PlayerInventory()
         };
     }
 }

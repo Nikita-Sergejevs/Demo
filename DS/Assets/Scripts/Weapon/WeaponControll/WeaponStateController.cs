@@ -6,9 +6,10 @@ public class WeaponStateController
 
     private WeaponConfig config;
 
-    public WeaponStateController(WeaponConfig config)
+    public WeaponStateController(WeaponConfig config, AmmoUI ui)
     {
         this.config = config;
+        ui.GetWeaponConfig(config);
     }
 
     public bool canShoot()
@@ -37,7 +38,6 @@ public class WeaponStateController
             SetCanShoot(false);
 
         config.currentAmmo--;
-        Debug.Log(config.currentAmmo);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, config.distance, config.layerMask))
         {
@@ -52,5 +52,10 @@ public class WeaponStateController
             config.currentAmmo = Mathf.Min(config.currentAmmo + config.magSize, config.maxTotalAmmo);
         else
             Debug.Log("Full");
+    }
+
+    public void IncreaseMaxAmmo()
+    {
+        config.maxTotalAmmo += config.magSize;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ac085571b2c6143a01d34479dc7539, type: 3}
   m_Name: Ammo
   m_EditorClassIdentifier: 
-  itemName: 
-  itemPrice: 0
-  itemSpirte: {fileID: 0}
-  itemEffect: {fileID: 0}
+  itemName: Ammo
+  itemPrice: 50
+  itemSpirte: {fileID: 21300000, guid: df677596aca943745ad1578725e519be, type: 3}
+  itemEffect: {fileID: 11400000, guid: c730721a0886db8469ecfe5485d4e2d9, type: 2}
