@@ -6,7 +6,6 @@ public class RepairingUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI plankText;
     private PlayerContext playerContext;
-    private WindowConfig windowConfig;
 
     private void OnEnable()
     {

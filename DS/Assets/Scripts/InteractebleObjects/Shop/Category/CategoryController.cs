@@ -7,7 +7,7 @@ public class CategoryController : MonoBehaviour
     private ShopItemPool shopPool;
     private PlayerContext playerContext;
 
-    public void InitializeCategory(ShopItemPool pool, ShopController controller, PlayerContext context)
+    public void InitializeCategory(ShopItemPool pool, PlayerContext context)
     {
         this.shopPool = pool;
         this.playerContext = context;

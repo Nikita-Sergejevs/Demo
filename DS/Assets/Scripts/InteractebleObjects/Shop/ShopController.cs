@@ -4,11 +4,11 @@ public class ShopController : MonoBehaviour
 {
     [SerializeField] private GameObject[] allCategoryContainers;
     [SerializeField] private ShopItemPool[] itemsPool;
-
+    private PlayerContext playerContext;
 
     private void Start()
     {
-        var context = GameManager.playerContext;
+        playerContext = GameManager.playerContext;
 
         int count = Mathf.Min(allCategoryContainers.Length, itemsPool.Length);
 
@@ -16,7 +16,7 @@ public class ShopController : MonoBehaviour
         {
             var category = allCategoryContainers[i].GetComponentInChildren<CategoryController>();
             if (category != null)
-                category.InitializeCategory(itemsPool[i], this, context);
+                category.InitializeCategory(itemsPool[i], playerContext);
             else
                 return;
         }

@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Upgrades
   m_EditorClassIdentifier: 
   poolName: Upgrades
-  itemPool:
-  - ShopItemData: {fileID: 11400000, guid: dbffe9cc2f3939e43b458e74eeb24727, type: 2}
-  - ShopItemData: {fileID: 11400000, guid: ba6dcefe4af1e5d4cab3fe922548c5ba, type: 2}
+  itemPool: []

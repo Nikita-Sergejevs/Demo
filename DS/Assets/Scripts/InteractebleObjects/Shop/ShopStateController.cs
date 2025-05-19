@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShopStateController : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class ShopStateController : MonoBehaviour
 
     public bool isInteracting { get; private set; }
     public bool canInteract = true;
+
+    public UnityEvent onShopEnable;
+    public UnityEvent onShopDisable;
 
     private void OnEnable()
     {
@@ -35,18 +39,29 @@ public class ShopStateController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.B) && canInteract)
             Interact();
+
+        if(isInteracting)
+            onShopEnable?.Invoke();
+        else
+            onShopDisable?.Invoke();
+
     }
 
     public void Interact()
     { 
-        if(!isInteracting)
+        if (!isInteracting)
+        {
             SetInteractionMode(true);
+        }
         else
-            SetInteractionMode(false);  
+        {
+            SetInteractionMode(false);
+        }
     }
 
     private void SetInteractionMode(bool enable)
     {
+
         isInteracting = enable;
 
         playerWeapon.SetActive(!enable);

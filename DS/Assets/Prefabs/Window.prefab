@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7729576763988737598}
   - component: {fileID: 6757964680220946356}
+  - component: {fileID: 6499888085604057225}
   m_Layer: 0
   m_Name: Window
   m_TagString: Untagged
@@ -257,7 +258,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 1bd6572194a46194492e9f09aaff5990, type: 2}
-  health: 0
+--- !u!114 &6499888085604057225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301649602602121484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e333eb177fa5740a78d472255dc4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8514657489944747211
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +281,6 @@ GameObject:
   - component: {fileID: 7371339358910894270}
   - component: {fileID: 8179230719937536303}
   - component: {fileID: 8054465315020875908}
-  - component: {fileID: 5568323145142186800}
   - component: {fileID: 2391041338982977351}
   m_Layer: 3
   m_Name: Window Trigger
@@ -330,19 +341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteraction: {fileID: 0}
---- !u!114 &5568323145142186800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8514657489944747211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74f47e1c8cdbe34c8aaef77ddd40405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windowStats: {fileID: 6757964680220946356}
 --- !u!65 &2391041338982977351
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,12 +5,22 @@ public class WindowInteractionHandler : MonoBehaviour, IInteractable
     [SerializeField] private PlayerInteractionScan playerInteraction;
 
     private WindowInteraction windowInteraction;
-    private WindowHoldInteraction windowHoldInteraction;
+    private WindowRepair windowRepair;
+    private PlayerContext playerContext;
 
-    private void Awake()
+    private void Start()
     {
         windowInteraction = GetComponent<WindowInteraction>();
-        windowHoldInteraction = GetComponent<WindowHoldInteraction>();
+        windowRepair = GetComponentInParent<WindowRepair>();
+
+        playerContext = GameManager.playerContext;
+    }
+
+    public bool CanHold()
+    {
+        bool enoughPlanks = playerContext.playerInventory.GetItemCount(ItemType.Plank) >= 1;
+        bool needReapair = windowRepair.CheckForRepair();
+        return enoughPlanks && needReapair;
     }
 
     public void OnTap()
@@ -21,6 +31,7 @@ public class WindowInteractionHandler : MonoBehaviour, IInteractable
 
     public void OnHold()
     {
-        windowHoldInteraction.Repair();
+        if (playerContext.playerInventory.TryUseItem(ItemType.Plank, 1))
+            windowRepair.GetRepair();
     }
 }

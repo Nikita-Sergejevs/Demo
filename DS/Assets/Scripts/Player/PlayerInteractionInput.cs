@@ -7,10 +7,16 @@ public class PlayerInteractionInput : MonoBehaviour
     [SerializeField] private float holdThershold = 0.5f;
     [SerializeField] private PlayerInteractionScan scaner;
 
-    private float holdTime;
+    private WindowInteractionHandler handler;
 
-    private bool isHolding;
-    private bool isInteracting;
+    public float holdTime;
+
+    public bool isHolding;
+
+    private void Start()
+    {
+        handler = FindAnyObjectByType<WindowInteractionHandler>();
+    }
 
     private void Update()
     {
@@ -23,7 +29,15 @@ public class PlayerInteractionInput : MonoBehaviour
     private void InteractionInput()
     {
         if (Input.GetKeyDown(interactionKey))
-            ResetHolding(false);
+        {
+            if (handler.CanHold())
+            {
+                Debug.Log(handler.CanHold());
+                ResetHolding(false);
+            }
+            else
+                ResetHolding(false);
+        }
 
         if (Input.GetKey(interactionKey) && isHolding)
         {

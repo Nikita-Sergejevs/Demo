@@ -15,6 +15,11 @@ public class PlayerInventory
         else
             items[type] = amount;
 
+        UpdateItemCount();
+    }
+
+    public void UpdateItemCount()
+    {
         OnPlankChanged?.Invoke();
     }
 
@@ -23,6 +28,7 @@ public class PlayerInventory
         if (items.TryGetValue(type, out int count) && count >= amount)
         {
             items[type] -= amount;
+            OnPlankChanged();
             return true;
         }
         else

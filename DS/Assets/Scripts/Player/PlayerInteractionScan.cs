@@ -17,6 +17,11 @@ public class PlayerInteractionScan : MonoBehaviour
         CheckForInteraction();
     }
 
+    public void DisableScan()
+    {
+        onLookExit.Invoke();
+    }
+
     private void CheckForInteraction()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
