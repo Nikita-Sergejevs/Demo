@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d0359bb634ebf4cbe3621e6077c15d, type: 3}
   m_Name: PlankEffect
   m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: ba6dcefe4af1e5d4cab3fe922548c5ba, type: 2}

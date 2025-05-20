@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4c46b8fe1603834295db40371bb986f, type: 3}
-  m_Name: ShotgunA
+  m_Script: {fileID: 11500000, guid: 572dc3c44d9cdd842942d358a621888a, type: 3}
+  m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 7a0f23ff55a73cf4eb19c08fae11cded, type: 2}

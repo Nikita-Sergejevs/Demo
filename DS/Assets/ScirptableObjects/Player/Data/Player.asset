@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   baseMovementSpeed: 5
-  baseMoneyAmmount: 12222
+  baseMoneyAmmount: 10000

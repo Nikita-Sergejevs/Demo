@@ -16,9 +16,7 @@ public class ItemController : MonoBehaviour
 
     public void TryBuyAndApply()
     {
-        if (playerContext.playerWallet.TryToBuy(itemData.itemPrice))
+        if(itemData.itemEffect.CanApply(playerContext))
             itemData.itemEffect.Apply(playerContext);
-        else
-            Debug.Log("Not enough money!");
     }
 }   

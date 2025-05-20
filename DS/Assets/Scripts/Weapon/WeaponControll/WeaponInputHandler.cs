@@ -12,10 +12,5 @@ public class WeaponInputHandler : MonoBehaviour
             var ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             weapon.Controller.Shoot(ray.origin, ray.direction);
         }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            weapon.Controller.IncreaseMaxAmmo();
-        }
     }
 }

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6be95a27c3083f4f842a723192a2df1, type: 3}
   m_Name: AmmoEffect
   m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 0a3179f641c722a4ba2e99e26f51a8cd, type: 2}

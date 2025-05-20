@@ -9,18 +9,13 @@ public class PlayerWallet : MonoBehaviour
         this.playerWallet = config;
     }
 
-    public bool TryToBuy(int ammount)
+    public bool TrySpend(int amount)
     {
-        return playerWallet.SpendMoney(ammount);
+        return playerWallet.SpendMoney(amount);
     }
 
-    private void Update()
+    public void AddMoney(int amount)
     {
-        Debug.Log(playerWallet.Money);
-    }
-
-    public void AddMoney(int ammount)
-    {
-        playerWallet.AddMoney(ammount);
+        playerWallet.AddMoney(amount);
     }
 }

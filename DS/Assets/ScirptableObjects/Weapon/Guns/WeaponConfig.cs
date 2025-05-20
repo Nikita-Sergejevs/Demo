@@ -11,8 +11,6 @@ public class WeaponConfig : ScriptableObject
     public float currentAmmo;
     public float maxTotalAmmo;
 
-    public AmmoData ammoType;
-
     public LayerMask layerMask;
 
     public bool canShoot;

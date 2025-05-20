@@ -13,10 +13,25 @@ public class WeaponData : ScriptableObject
     [Header("Ammo Parameters")]
     public float baseMagSize;
     public float baseMagCount;
-    
+
     [Space]
-    public AmmoData ammoType;
+    public UpgradeLimit[] upgradeLimits;
 
     [HideInInspector]
     public bool canShoot;
+}
+
+[System.Serializable]
+public class UpgradeLimit
+{
+    public UpgradeTypes type;
+    public int maxLevel;
+    public float statsPerLevel;
+}
+
+public enum UpgradeTypes
+{
+    Damage,
+    RPM,
+    Ammo
 }

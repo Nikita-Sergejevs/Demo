@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface IShopItemEffect
 {
-    public void Apply(PlayerContext context);
+    public bool CanApply(PlayerContext context);
+    public void Apply(PlayerContext context);    
 }

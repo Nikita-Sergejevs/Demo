@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4c46b8fe1603834295db40371bb986f, type: 3}
-  m_Name: PistolA
+  m_Script: {fileID: 11500000, guid: c322b419ba4d44d468ce5bff67886b9e, type: 3}
+  m_Name: AmmoUpgrade
   m_EditorClassIdentifier: 
-  effect: {fileID: 11400000, guid: 6990724b5d803b34ab9ea63bee158e55, type: 2}
+  itemData: {fileID: 11400000, guid: 83c5c61615f682747ac01b51a5892d22, type: 2}

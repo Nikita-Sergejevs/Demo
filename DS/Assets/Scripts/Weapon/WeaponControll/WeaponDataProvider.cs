@@ -6,10 +6,17 @@ public class WeaponDataProvider : MonoBehaviour
     [SerializeField] private AmmoUI ammoUI;
 
     public WeaponStateController Controller { get; private set; }
+    public WeaponUpgradeApplier upgradeApplier { get; private set; }
+    public AmmoHandler ammoHandler { get; private set; }
 
     private void Awake()
     {
         Initalize();
+    }
+
+    private void Update()
+    {
+        ammoUI.UpdateUI();
     }
 
     private void Initalize()
@@ -19,7 +26,11 @@ public class WeaponDataProvider : MonoBehaviour
 
         var config = CreateWeaponConfig();
 
-        Controller = new WeaponStateController(config, ammoUI);
+        ammoUI.GetWeaponConfig(config);
+
+        Controller = new WeaponStateController(config);
+        upgradeApplier = new WeaponUpgradeApplier(config, data);
+        ammoHandler = new AmmoHandler(config);
     }
 
     private WeaponConfig CreateWeaponConfig()
@@ -34,7 +45,6 @@ public class WeaponDataProvider : MonoBehaviour
         config.currentAmmo = data.baseMagSize * data.baseMagCount;
         config.maxTotalAmmo = data.baseMagSize * data.baseMagCount;
 
-        config.ammoType = data.ammoType;
         config.layerMask = data.layerMask;
 
         config.canShoot = data.canShoot;

@@ -6,10 +6,9 @@ public class WeaponStateController
 
     private WeaponConfig config;
 
-    public WeaponStateController(WeaponConfig config, AmmoUI ui)
+    public WeaponStateController(WeaponConfig weaponConfig)
     {
-        this.config = config;
-        ui.GetWeaponConfig(config);
+        this.config = weaponConfig;
     }
 
     public bool canShoot()
@@ -20,11 +19,6 @@ public class WeaponStateController
     public void SetCanShoot(bool value)
     {
         config.canShoot = value;
-    }
-
-    private bool canReload()
-    {
-        return config.currentAmmo < config.maxTotalAmmo;
     }
 
     public void Shoot(Vector3 origin, Vector3 direction)
@@ -44,18 +38,5 @@ public class WeaponStateController
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             damageable?.TakeDamage(config.damage);
         }
-    }
-
-    public void AddAmmo()
-    {
-        if (canReload())
-            config.currentAmmo = Mathf.Min(config.currentAmmo + config.magSize, config.maxTotalAmmo);
-        else
-            Debug.Log("Full");
-    }
-
-    public void IncreaseMaxAmmo()
-    {
-        config.maxTotalAmmo += config.magSize;
     }
 }
