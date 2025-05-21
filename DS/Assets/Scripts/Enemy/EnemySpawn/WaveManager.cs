@@ -8,7 +8,8 @@ public class WaveManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private EnemySpawner enemySpawner;
-
+    [SerializeField] private DifficultyConfig difficultyConfig;
+ 
     [SerializeField] private KeyCode startKey = KeyCode.Space;
 
     private float currentWave = 0;
@@ -16,7 +17,7 @@ public class WaveManager : MonoBehaviour
     private bool isWaveReady = true;   
     private bool isWaveActive;
 
-    public static event Action OnWaveStart;
+    public static event Action<DifficultyLevel> OnWaveStart;
     public static event Action OnWaveEnd;
 
     private bool canStartWave()
@@ -35,9 +36,13 @@ public class WaveManager : MonoBehaviour
         UpdateWaveState(false);
         currentWave++;
 
+        var difficulty = difficultyConfig.GetDifficultyLevel((int) currentWave);
+
         Debug.Log($"Start Wave {currentWave}");
 
-        OnWaveStart?.Invoke();
+        timeOfWave = difficulty.waveDuration;
+
+        OnWaveStart?.Invoke(difficulty);
 
         Invoke(nameof(EndWave), timeOfWave);
     }

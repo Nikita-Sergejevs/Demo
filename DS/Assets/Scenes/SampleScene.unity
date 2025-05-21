@@ -8815,6 +8815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOfWave: 1
   enemySpawner: {fileID: 2034631504}
+  difficultyConfig: {fileID: 11400000, guid: 80d212b31f8e80f4699d1f93f4f29b10, type: 2}
   startKey: 102
 --- !u!1001 &1625216040
 PrefabInstance:
@@ -10682,7 +10683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3c2d2467fb2bc4c85cfa38dfb3577e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawn: 1
   spawnPoints:
   - {fileID: 1202896208}
   - {fileID: 671841924}

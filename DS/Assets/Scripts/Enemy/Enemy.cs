@@ -2,44 +2,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [Header("Enemy Settings")]
-    [SerializeField] private EnemyData data;
-
-    private float health;
-    private int reward;
-
     private SpawnIndicator spawnIndicator;
     private PlayerWallet wallet;
+    private EnemyConfig config;
 
-    public void Initialize(Transform[] baseTargets)
+    public void Initialize(Transform[] baseTargets, EnemyConfig enemyConfig)
     {
-        if (data == null)
-            return;
-
-        var config = CreateBehaviorConfig(baseTargets);
-
-        health = config.hp;
-        reward = Random.Range(config.minMoney, config.maxMoney + 1);
+        this.config = enemyConfig;
 
         IEnemyBehavior behavior = GetComponent<IEnemyBehavior>();
         if (behavior != null)
             behavior.InitializeBehavior(config);
 
         wallet = FindAnyObjectByType<PlayerWallet>();
-    }
-
-    private EnemyConfig CreateBehaviorConfig(Transform[] baseTargets)
-    {
-        var config = ScriptableObject.CreateInstance<EnemyConfig>();
-        config.hp = data.baseHp;
-        config.speed = data.baseSpeed;
-        config.attackDamage = data.baseDamage;
-        config.attackCooldown = data.baseAttackCooldown;
-        config.minMoney = data.baseMinMoney;
-        config.maxMoney = data.baseMaxMoney;
-        config.lifeTime = data.baseLifeTime;
-        config.targets = baseTargets;
-        return config;
     }
 
     public void TakeDamage(float damage)
@@ -51,8 +26,8 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
 
-        health -= damage;
-        if (health <= 0)
+        config.hp -= damage;
+        if (config.hp <= 0)
             Die();
     }
 
@@ -66,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (spawnIndicator != null)
             spawnIndicator.UnregisterEnemy();
 
-        wallet.AddMoney(reward);
+        wallet.AddMoney(config.reward);
 
         Destroy(gameObject);
     }

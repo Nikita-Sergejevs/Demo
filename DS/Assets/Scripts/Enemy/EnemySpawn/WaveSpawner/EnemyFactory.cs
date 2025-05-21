@@ -9,7 +9,7 @@ public class EnemyFactory : MonoBehaviour
     [Header("References")]
     [SerializeField] private EnemyPool enemyPool;
 
-    public void SpawnEnemy(Transform spawnPoint)
+    public void SpawnEnemy(Transform spawnPoint, DifficultyLevel difficulty)
     {
         float offsetX = Random.Range(-xOffset, xOffset);
 
@@ -25,7 +25,10 @@ public class EnemyFactory : MonoBehaviour
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         if (enemyScript != null)
         {
-            enemyScript.Initialize(baseTargets);
+            EnemyConfig config = EnemyConfigBuilder.Build(selectedEnemy.enemyData, difficulty, baseTargets);
+            enemyScript.Initialize(baseTargets, config);
+
+            Debug.Log(config.hp);
 
             var indicator = spawnPoint.GetComponent<SpawnIndicator>();
             if (indicator != null)

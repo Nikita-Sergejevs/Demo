@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawn Parameters")]
-    [SerializeField] private float timeBetweenSpawn;
+    private float timeBetweenSpawn;
 
     [Header("Prefabs")]
     [SerializeField] private Transform[] spawnPoints;
@@ -17,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     private float[] spawnWeight;
 
     private Transform spawnPoint;
+
+    private DifficultyLevel currentDifficulty;
 
     private void Start()
     {
@@ -37,8 +38,10 @@ public class EnemySpawner : MonoBehaviour
         WaveManager.OnWaveEnd -= OnWaveEnd;
     }
 
-    private void OnWaveStart()
+    private void OnWaveStart(DifficultyLevel difficulty)
     {
+        currentDifficulty = difficulty;
+        timeBetweenSpawn = currentDifficulty.enemyCount;
         InvokeRepeating(nameof(SpawnLogic), 0, timeBetweenSpawn);
     }
 
@@ -60,9 +63,9 @@ public class EnemySpawner : MonoBehaviour
 
         spawnWeight[chooseIndex] += 1.5f;
 
-        for(int i = 0; i > spawnWeight.Length; i++)
+        for(int i = 0; i < spawnWeight.Length; i++)
         {
-            spawnWeight[i] = Mathf.Max(1f, spawnWeight[i] - 0.5f);
+            spawnWeight[i] = Mathf.Min(spawnWeight[chooseIndex] + 1.5f, 5f);
         }
     }
 
@@ -87,6 +90,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        enemyFactory.SpawnEnemy(spawnPoint);
+        enemyFactory.SpawnEnemy(spawnPoint, currentDifficulty);
     }
 }

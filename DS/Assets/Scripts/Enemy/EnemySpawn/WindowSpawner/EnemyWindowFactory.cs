@@ -25,6 +25,9 @@ public class EnemyWindowFactory : MonoBehaviour
 
         Enemy enemyScript = enemy.GetComponent<Enemy>();
         if (enemyScript != null)
-            enemyScript.Initialize(null);
+        {
+            EnemyConfig config = EnemyConfigBuilder.Build(selectedEnemy.enemyData, null, null);
+            enemyScript.Initialize(null, config);
+        } 
     }
 }

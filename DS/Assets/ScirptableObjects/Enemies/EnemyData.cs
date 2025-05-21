@@ -18,13 +18,4 @@ public class EnemyData : ScriptableObject
 
     public int baseMinMoney;
     public int baseMaxMoney;
-
-    public Type enemyType;
-
-    public enum Type
-    {
-        Walking,
-        Running,
-        Standing
-    }
 }
