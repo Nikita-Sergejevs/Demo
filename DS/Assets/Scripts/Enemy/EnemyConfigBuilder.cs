@@ -6,13 +6,17 @@ public static class EnemyConfigBuilder
     {
         var config = ScriptableObject.CreateInstance<EnemyConfig>();
 
-        config.hp = data.baseHp * difficultyLevel.hpMultiplier;
-        config.speed = data.baseSpeed * difficultyLevel.speedMultiplier;
+        float hpMultiplier = difficultyLevel?.hpMultiplier ?? 1f;
+        float speedMultipleir = difficultyLevel?.speedMultiplier ?? 1f;
+        float moneyBonus = difficultyLevel?.moneyBonus ?? 1f;   
+
+        config.hp = data.baseHp * hpMultiplier;
+        config.speed = data.baseSpeed * speedMultipleir;
         config.attackDamage = data.baseDamage;
         config.attackCooldown = data.baseAttackCooldown;
         config.lifeTime = data.baseLifeTime;
 
-        config.reward = Random.Range(config.minMoney, config.maxMoney + 1) * difficultyLevel.moneyBonus;
+        config.reward = Random.Range(config.minMoney, config.maxMoney + 1) * ((int)moneyBonus);
 
         config.targets = target;
 

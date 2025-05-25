@@ -18,15 +18,15 @@ MonoBehaviour:
     hpMultiplier: 1
     speedMultiplier: 1
     moneyBonus: 1
-    waveDuration: 3
-    enemyCount: 2
+    waveDuration: 10
+    enemyCount: 1
   - fromWave: 2
     toWave: 2
-    hpMultiplier: 2
-    speedMultiplier: 2
-    moneyBonus: 2
-    waveDuration: 2
-    enemyCount: 3
+    hpMultiplier: 1.25
+    speedMultiplier: 1.1
+    moneyBonus: 1
+    waveDuration: 15
+    enemyCount: 1
   - fromWave: 3
     toWave: 3
     hpMultiplier: 1

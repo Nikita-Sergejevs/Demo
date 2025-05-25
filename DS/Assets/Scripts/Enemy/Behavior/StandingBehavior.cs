@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class StandingBehavior : MonoBehaviour, IEnemyBehavior
 {
     private float lifeTime;
-    private float hp;
 
     private bool isDead;
 

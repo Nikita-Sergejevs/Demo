@@ -1,7 +1,10 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CinemachineCamera virtualCamera;
+
     private float movementSpeed;
 
     private PlayerConfig playerConfig;
@@ -18,6 +21,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         MovementInput();
+    }
+
+    private void LateUpdate()
+    {
+        Quaternion cameraRotation = virtualCamera.State.RawOrientation;
+        float yaw = cameraRotation.eulerAngles.y;
+
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 
     public void Initialize(PlayerConfig config)

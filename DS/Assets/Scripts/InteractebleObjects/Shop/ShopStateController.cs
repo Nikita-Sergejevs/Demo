@@ -66,7 +66,6 @@ public class ShopStateController : MonoBehaviour
 
         playerWeapon.SetActive(!enable);
         ShopUI.SetActive(enable);
-        cameraController.enabled = !enable;
 
         cameraController.EnableCursor(enable);
     }

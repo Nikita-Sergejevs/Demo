@@ -73,7 +73,6 @@ public class WindowInteraction : MonoBehaviour
     {
         isInteracting = !enable;
 
-        cameraController.enabled = enable;
         playerController.isMovementAllowed = enable;
 
         cameraController.EnableCursor(!enable);

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ded01c35a9a9c04ab243adb9ac05f1a, type: 3}
   m_Name: Standing
   m_EditorClassIdentifier: 
-  baseHp: 100
+  baseHp: 1000
   baseSpeed: 0
   baseDamage: 0
   baseAttackCooldown: 0
   baseLifeTime: 2
   rarity: 5
-  enemyType: 2
+  baseMinMoney: 0
+  baseMaxMoney: 0

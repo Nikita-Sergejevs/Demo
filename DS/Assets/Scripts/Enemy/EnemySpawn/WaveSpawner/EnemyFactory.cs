@@ -28,8 +28,6 @@ public class EnemyFactory : MonoBehaviour
             EnemyConfig config = EnemyConfigBuilder.Build(selectedEnemy.enemyData, difficulty, baseTargets);
             enemyScript.Initialize(baseTargets, config);
 
-            Debug.Log(config.hp);
-
             var indicator = spawnPoint.GetComponent<SpawnIndicator>();
             if (indicator != null)
             {
